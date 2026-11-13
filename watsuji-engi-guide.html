@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>原始仏教の実践哲学を読む</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: 講義ノートの一段組。章ごとに「問い→図→本文の言葉（頁）」の順で並べ、図は本文幅いっぱいに置く */
+:root{
+  --paper:#f4f5f2; --ink:#1f2328; --mute:#5b6168; --line:#d5d8d2; --panel:#ffffff;
+  --ai:#2d4c74;      /* 藍：和辻の読み */
+  --ai-soft:#dfe7f1;
+  --shu:#b24a32;     /* 朱：伝統的な読み */
+  --shu-soft:#f4e1da;
+  --moss:#5e7a3a; --moss-soft:#e3ead8;
+  --display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --text:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#16181b; --ink:#e7e9ec; --mute:#a2a8af; --line:#33373c; --panel:#1f2226;
+  --ai:#8fb0d9; --ai-soft:#22324a; --shu:#e48a73; --shu-soft:#43281f; --moss:#a6c47f; --moss-soft:#2a3320; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#16181b; --ink:#e7e9ec; --mute:#a2a8af; --line:#33373c; --panel:#1f2226;
+  --ai:#8fb0d9; --ai-soft:#22324a; --shu:#e48a73; --shu-soft:#43281f; --moss:#a6c47f; --moss-soft:#2a3320; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:16px;line-height:1.85;margin:0}
+.page{max-width:52rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 96px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.35;margin:0}
+h1{font-size:clamp(30px,5.4vw,46px);font-weight:800;letter-spacing:.02em}
+h2{font-size:clamp(23px,3.6vw,30px);font-weight:800;margin-top:72px;padding-top:20px;border-top:2px solid var(--ink)}
+h2 .no{font-family:var(--text);font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--mute);display:block;margin-bottom:6px}
+h3{font-size:19px;font-weight:600;margin-top:36px}
+p{margin:14px 0}
+.lead{font-size:18px;color:var(--ink);max-width:40em}
+.kicker{font-size:13px;letter-spacing:.14em;color:var(--mute);margin-bottom:10px;font-weight:500}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--mute);margin-top:14px}
+.q{display:inline-block;font-weight:700;color:var(--ai);font-size:14px;letter-spacing:.06em;margin-top:6px}
+.point{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:20px 0}
+.point h4{margin:0 0 6px;font-size:14px;letter-spacing:.08em;color:var(--mute)}
+.point ol,.point ul{margin:0;padding-left:1.3em}
+blockquote{margin:18px 0;padding:10px 0 10px 18px;border-left:3px solid var(--ai);font-family:var(--display);font-size:16.5px;line-height:1.9}
+blockquote .src{display:block;font-family:var(--text);font-size:12.5px;color:var(--mute);margin-top:6px}
+blockquote .mod{display:block;font-family:var(--text);font-size:14.5px;color:var(--ink);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.tbl{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.06em;color:var(--mute);font-weight:500;background:var(--paper)}
+tr:last-child td{border-bottom:0}
+td.pg,th.pg{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--mute);font-size:13px}
+.fig{margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
+.fig figcaption{font-size:13px;color:var(--mute);margin-top:10px;line-height:1.6}
+.fig svg{display:block;width:100%;height:auto}
+.svgwrap{overflow-x:auto}
+.svgwrap svg{min-width:560px}
+svg text{font-family:var(--text);fill:var(--ink)}
+.toggle{display:flex;gap:0;margin-bottom:12px;border:1px solid var(--line);border-radius:6px;overflow:hidden;width:max-content;max-width:100%}
+.toggle button{font:inherit;font-size:14px;padding:7px 14px;border:0;background:var(--panel);color:var(--ink);cursor:pointer}
+.toggle button[aria-pressed="true"].t-shu{background:var(--shu);color:var(--panel)}
+.toggle button[aria-pressed="true"].t-ai{background:var(--ai);color:var(--panel)}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
+.explain{font-size:14.5px;margin:4px 0 0}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;margin-right:6px;vertical-align:.1em;font-weight:500}
+.tag.shu{background:var(--shu-soft);color:var(--shu)}
+.tag.ai{background:var(--ai-soft);color:var(--ai)}
+.tag.moss{background:var(--moss-soft);color:var(--moss)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:14px;margin:18px 0}
+.two > div{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.two h4{margin:0 0 6px;font-size:15px}
+.mat td,.mat th{text-align:center;padding:7px 4px;font-size:13.5px}
+.mat td:first-child,.mat th:first-child{text-align:left;padding-left:12px;white-space:nowrap}
+.mat .on{background:var(--ai-soft);color:var(--ai);font-weight:700}
+.mat .sprout{background:var(--moss-soft);color:var(--moss);font-weight:700}
+details{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin:10px 0}
+summary{cursor:pointer;font-weight:500}
+details p{margin:10px 0 2px;font-size:15px}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:8px;margin:26px 0 0;padding:0;list-style:none;font-size:14.5px}
+.toc a{display:block;color:var(--ink);text-decoration:none;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+.toc a:hover{border-color:var(--ai)}
+.toc a span{display:block;font-size:12px;color:var(--mute)}
+.note{font-size:13px;color:var(--mute);line-height:1.7}
+a{color:var(--ai)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.chain g{transition:opacity .35s}}
+</style>
+
+<div class="page">
+
+<header>
+  <div class="kicker">大学1年生のための読書ガイド</div>
+  <h1>原始仏教の実践哲学を読む</h1>
+  <p class="lead">和辻哲郎が1927年に出した『原始佛教の實踐哲學』は、仏教の「縁起（えんぎ）」をどう読むかで学界に大きな論争を起こした本です。この解説では、本の骨組みと中心の主張を、図と表で順にたどります。</p>
+  <div class="meta"><span>和辻哲郎 著</span><span>岩波書店 1927年（昭和2年）2月刊</span><span>本文 461頁</span><span>引用の頁は初版のもの</span></div>
+  <ul class="toc">
+    <li><a href="#s1">1 どんな本か<span>成り立ちと全体の構成</span></a></li>
+    <li><a href="#s2">2 序論 資料の読み方<span>経典には古い層と新しい層がある</span></a></li>
+    <li><a href="#s3">3 第一章 根本的立場<span>「もの」ではなく「法」を見る</span></a></li>
+    <li><a href="#s4">4 第二章 縁起説<span>時間の因果か、条件の依存か</span></a></li>
+    <li><a href="#s5">5 第三章 道諦<span>実践と輪廻の問題</span></a></li>
+    <li><a href="#s6">6 確認問題と用語集<span>自分の言葉で説明できるか</span></a></li>
+  </ul>
+</header>
+
+<!-- ===== 1 ===== -->
+<section id="s1">
+<h2><span class="no">1</span>どんな本か</h2>
+<p>和辻哲郎（1889–1960）は『古寺巡礼』『風土』『倫理学』で知られる哲学者で、仏教の専門家ではありませんでした。本人も序言の一行目でそう断っています。</p>
+<blockquote>この書の著者は佛教專門學者ではない。しかしこの書自身は原始佛教の哲學に關する純學術的な研究である。
+  <span class="src">序言 1頁</span>
+  <span class="mod">現代語にすると「私は仏教の専門家ではない。けれどもこの本は、原始仏教の哲学についての、きちんとした学術研究である」。</span>
+</blockquote>
+<p>ねらいは、原始仏教の中にある独特の哲学を、仏教研究者だけでなく哲学を学ぶ人みんなに知ってもらうことでした。もとは雑誌『思想』に1926年1月から連載した論文で、批評を受けて書き直したうえで本にしています。</p>
+
+<h3>研究の流れの中での位置</h3>
+<figure class="fig">
+  <div class="svgwrap">
+  <svg viewBox="0 0 760 210" role="img" aria-label="1904年から1927年までの縁起研究の年表">
+    <rect x="0" y="0" width="760" height="210" fill="var(--panel)"/>
+    <line x1="40" y1="100" x2="730" y2="100" stroke="var(--line)" stroke-width="3"/>
+    <!-- scale: 1900→40, 1930→730 ; 23px/yr -->
+    <g font-size="12" fill="var(--mute)">
+      <text x="40" y="128" text-anchor="middle" fill="var(--mute)">1900</text>
+      <text x="155" y="128" text-anchor="middle" fill="var(--mute)">1905</text>
+      <text x="270" y="128" text-anchor="middle" fill="var(--mute)">1910</text>
+      <text x="385" y="128" text-anchor="middle" fill="var(--mute)">1915</text>
+      <text x="500" y="128" text-anchor="middle" fill="var(--mute)">1920</text>
+      <text x="615" y="128" text-anchor="middle" fill="var(--mute)">1925</text>
+      <text x="730" y="128" text-anchor="middle" fill="var(--mute)">1930</text>
+    </g>
+    <g>
+      <circle cx="132" cy="100" r="7" fill="var(--ai)"/>
+      <text x="132" y="62" text-anchor="middle" font-size="13" font-weight="700">1904 ワレザー</text>
+      <text x="132" y="80" text-anchor="middle" font-size="12" fill="var(--mute)">名色＝胎児説を攻撃</text>
+      <circle cx="293" cy="100" r="7" fill="var(--ai)"/>
+      <text x="293" y="160" text-anchor="middle" font-size="13" font-weight="700">1911 松本文三郎</text>
+      <text x="293" y="178" text-anchor="middle" font-size="12" fill="var(--mute)">十二縁起は論理的関係</text>
+      <circle cx="546" cy="100" r="7" fill="var(--shu)"/>
+      <text x="546" y="62" text-anchor="middle" font-size="13" font-weight="700">1922 木村泰賢</text>
+      <text x="546" y="80" text-anchor="middle" font-size="12" fill="var(--mute)">『原始仏教思想論』</text>
+      <circle cx="615" cy="100" r="7" fill="var(--ai)"/>
+      <text x="610" y="160" text-anchor="middle" font-size="13" font-weight="700">1925 宇井伯壽</text>
+      <text x="610" y="178" text-anchor="middle" font-size="12" fill="var(--mute)">縁起＝相依相関性</text>
+      <circle cx="661" cy="100" r="9" fill="var(--ink)"/>
+      <text x="700" y="40" text-anchor="middle" font-size="13" font-weight="700">1926–27 和辻</text>
+      <text x="700" y="58" text-anchor="middle" font-size="12" fill="var(--mute)">『思想』連載→本書</text>
+      <line x1="663" y1="91" x2="690" y2="64" stroke="var(--ink)" stroke-width="1"/>
+    </g>
+  </svg>
+  </div>
+  <figcaption>藍色は縁起を「論理的な関係」と読む系譜、朱色は和辻が主な批判相手にした木村泰賢。和辻は第二章の冒頭（266–271頁）でこの流れを自分で整理している。</figcaption>
+</figure>
+
+<h3>全体の構成</h3>
+<div class="tbl"><table>
+  <thead><tr><th>部分</th><th>扱うこと</th><th>ひとことで</th><th class="pg">頁</th></tr></thead>
+  <tbody>
+    <tr><td>序論 根本資料の取扱ひ方について</td><td>経典の成立の新古、漢訳とパーリ語原典の比較、律と経の分析</td><td>どの経典を、どう信用するか</td><td class="pg">2–131</td></tr>
+    <tr><td>第一章 根本的立場</td><td>仏陀の沈黙、無常・苦・無我、五蘊、六入処</td><td>仏教は「もの」ではなく「法」を見る</td><td class="pg">133–266</td></tr>
+    <tr><td>第二章 緣起說</td><td>縁起の解釈史、縁起系列の発展、九支・十支・十二支、逆観</td><td>縁起は時間の因果ではない</td><td class="pg">266–386</td></tr>
+    <tr><td>第三章 道 諦</td><td>四諦、無我と道徳、八聖道、輪廻と業、阿育王碑文</td><td>この哲学はどう生きる道になるか</td><td class="pg">387–461</td></tr>
+  </tbody>
+</table></div>
+<p class="note">本の約4分の1が「資料の読み方」に使われています。結論より先に方法を固めるのが、この本の大きな特徴です。</p>
+</section>
+
+<!-- ===== 2 ===== -->
+<section id="s2">
+<h2><span class="no">2</span>序論　資料の読み方</h2>
+<span class="q">問い：仏陀の教えを知るために、経典をそのまま信じてよいか？</span>
+<p>仏教の経典は、仏陀の死後、長い時間をかけて弟子たちがまとめ、書き足してきたものです。そのため一つの経典の中にも、古い部分と新しい部分が重なっています。和辻は、経典を地層のように見分けて読む必要があると考えました。</p>
+
+<figure class="fig">
+  <svg viewBox="0 0 700 250" role="img" aria-label="経典の層を地層に見立てた図">
+    <rect x="0" y="0" width="700" height="250" fill="var(--panel)"/>
+    <rect x="30" y="20" width="400" height="50" fill="var(--shu-soft)"/>
+    <rect x="30" y="70" width="400" height="60" fill="var(--paper)"/>
+    <rect x="30" y="130" width="400" height="90" fill="var(--ai-soft)"/>
+    <text x="50" y="50" font-size="14">新しい層：論書（アビダルマ）の解釈、輪廻と結びついた説明</text>
+    <text x="50" y="105" font-size="14">中間の層：長い経、註釈を含む経、物語の増広</text>
+    <text x="50" y="170" font-size="14" font-weight="700">古い層：短い経、単純な教理</text>
+    <text x="50" y="195" font-size="13" fill="var(--mute)">（相応部・雑阿含の短経など）</text>
+    <line x1="470" y1="210" x2="470" y2="35" stroke="var(--ink)" stroke-width="2"/>
+    <polygon points="464,40 470,25 476,40" fill="var(--ink)"/>
+    <text x="486" y="45" font-size="13">時代が下る</text>
+    <text x="486" y="130" font-size="13" fill="var(--mute)">単純なもの → 複雑なもの</text>
+    <text x="486" y="205" font-size="13">仏陀に近い</text>
+  </svg>
+  <figcaption>和辻の資料観のイメージ図。実際の議論では、漢訳（阿含）とパーリ語（ニカーヤ）を並べて比べ、両方に共通する部分を古いと見る手続きを重ねている。</figcaption>
+</figure>
+
+<p>この見方は、のちの縁起の議論にそのまま効いてきます。</p>
+<blockquote>緣起支が簡單であるほど時代が古いといふ觀察は避くべからざるものである。
+  <span class="src">序論 124–125頁</span>
+  <span class="mod">現代語にすると「縁起の項目が少なく単純なものほど古い、という見方は避けられない」。</span>
+</blockquote>
+
+<div class="point"><h4>押さえどころ</h4>
+<ol>
+  <li>経典の言葉をすべて「仏陀の言葉」として一度に調和させようとしない。</li>
+  <li>漢訳とパーリ語を比べ、共通する古い核を探す。</li>
+  <li>単純な説から複雑な説へ、という<b>思想の発展</b>として経典を並べ直す。</li>
+</ol></div>
+</section>
+
+<!-- ===== 3 ===== -->
+<section id="s3">
+<h2><span class="no">3</span>第一章　根本的立場</h2>
+<span class="q">問い：仏陀は哲学的に考えることを拒んだのか？</span>
+
+<h3>仏陀の沈黙をどう読むか</h3>
+<p>経典には、「世界は永遠か」「魂と身体は同じか」「如来は死後も存在するか」といった問いに、仏陀が答えなかったという話があります。多くの学者はこれを、仏陀は解脱という実践にしか関心がなく、哲学的な思索を退けた証拠だと読みました。毒矢のたとえ（毒矢に射られた人が、射手の素性を聞くまで矢を抜かせないのは愚かだ、という話）もその根拠に使われます。</p>
+<p>和辻はこれに反対します。答えなかったのは考えなかったからではなく、問いの立て方そのものに乗らなかったからだ、と読むのです。</p>
+<blockquote>佛陀が答へなかつたのは、自ら右の立場に下つて相背反する主張の一つを取ることを欲しなかつたから
+  <span class="src">第一章 142–143頁</span>
+  <span class="mod">「答えなかったのは、その議論の土俵に降りて、対立する主張のどちらか一方を選ぶことをしたくなかったからだ」。</span>
+</blockquote>
+
+<div class="two">
+  <div><h4><span class="tag shu">よくある読み</span></h4>仏陀は実践家で、哲学に興味がなかった。だから形而上学の問いに答えなかった。</div>
+  <div><h4><span class="tag ai">和辻の読み</span></h4>仏陀は別の水準で考えていた。「ものが有るか無いか」を問うのをやめ、「ものがどのようにあるか」を問う立場に移っていた。</div>
+</div>
+
+<h3>「存在」と「法」を区別する</h3>
+<p>第一章の鍵は、<b>存在するもの</b>（目の前の花や身体）と、それが存在するときの<b>あり方＝法（ダルマ）</b>を分けることです。和辻はこの区別が無常・苦・無我の教えの根っこにあると考えました（176–179頁）。仏教は個々の「もの」についてではなく、「もの」が成り立つための仕組みについて語っている、というわけです。</p>
+
+<h3>五蘊＝「ある」ことの五つのあり方</h3>
+<p>五蘊（色・受・想・行・識）は、ふつう「人間を作る五つの要素」と説明されます。和辻は、目の前に咲く白椿の花を例に、五蘊を「何かがある」ということの五つの側面として説明しています（210–213頁）。</p>
+
+<figure class="fig">
+  <div class="svgwrap">
+  <svg viewBox="0 0 720 300" role="img" aria-label="白椿の花を中心に五蘊を五つのあり方として示した図">
+    <rect x="0" y="0" width="720" height="300" fill="var(--panel)"/>
+    <!-- flower -->
+    <g transform="translate(150,150)">
+      <circle r="92" fill="var(--paper)" stroke="var(--line)"/>
+      <g fill="var(--panel)" stroke="var(--mute)" stroke-width="1.5">
+        <ellipse rx="22" ry="38" transform="rotate(0) translate(0,-30)"/>
+        <ellipse rx="22" ry="38" transform="rotate(72) translate(0,-30)"/>
+        <ellipse rx="22" ry="38" transform="rotate(144) translate(0,-30)"/>
+        <ellipse rx="22" ry="38" transform="rotate(216) translate(0,-30)"/>
+        <ellipse rx="22" ry="38" transform="rotate(288) translate(0,-30)"/>
+      </g>
+      <circle r="13" fill="var(--moss-soft)" stroke="var(--moss)"/>
+      <text y="80" text-anchor="middle" font-size="13" fill="var(--mute)">目の前の白椿</text>
+    </g>
+    <g font-size="14">
+      <line x1="245" y1="70" x2="300" y2="40" stroke="var(--line)"/>
+      <line x1="248" y1="115" x2="300" y2="98" stroke="var(--line)"/>
+      <line x1="250" y1="150" x2="300" y2="156" stroke="var(--line)"/>
+      <line x1="248" y1="185" x2="300" y2="214" stroke="var(--line)"/>
+      <line x1="245" y1="230" x2="300" y2="272" stroke="var(--line)"/>
+      <rect x="300" y="22" width="400" height="38" rx="4" fill="var(--ai-soft)"/>
+      <text x="314" y="47"><tspan font-weight="700" fill="var(--ai)">色</tspan>　見られ、触れられるものとしてある</text>
+      <rect x="300" y="80" width="400" height="38" rx="4" fill="var(--ai-soft)"/>
+      <text x="314" y="105"><tspan font-weight="700" fill="var(--ai)">受</tspan>　「美しい」「快い」と感じられてある</text>
+      <rect x="300" y="138" width="400" height="38" rx="4" fill="var(--ai-soft)"/>
+      <text x="314" y="163"><tspan font-weight="700" fill="var(--ai)">想</tspan>　「椿の花」という像（イメージ）を取ってある</text>
+      <rect x="300" y="196" width="400" height="38" rx="4" fill="var(--ai-soft)"/>
+      <text x="314" y="221"><tspan font-weight="700" fill="var(--ai)">行</tspan>　形づくられ、はたらきの中にある</text>
+      <rect x="300" y="254" width="400" height="38" rx="4" fill="var(--ai-soft)"/>
+      <text x="314" y="279"><tspan font-weight="700" fill="var(--ai)">識</tspan>　それとして見分けられ（了別され）てある</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption>五蘊は花を組み立てる「部品」ではない。一つの花が「ある」ときに、同時に成り立っている五つの側面である（第一章 210–213頁の白椿の例による）。</figcaption>
+</figure>
+
+<div class="tbl"><table>
+  <thead><tr><th>五蘊</th><th>よくある説明</th><th>和辻の説明</th></tr></thead>
+  <tbody>
+    <tr><td>色 しき</td><td>物質、身体</td><td>見られ触れられるものとしてあること。木村泰賢の「物質的要素」という解釈を和辻ははっきり退けている（184–185頁）</td></tr>
+    <tr><td>受 じゅ</td><td>感受、感覚・感情</td><td>感受せられてあること</td></tr>
+    <tr><td>想 そう</td><td>表象、イメージ</td><td>像を取ってあること</td></tr>
+    <tr><td>行 ぎょう</td><td>意志、形成力</td><td>為作（いさ）せられてあること</td></tr>
+    <tr><td>識 しき</td><td>認識、心</td><td>了別せられてあること</td></tr>
+  </tbody>
+</table></div>
+</section>
+
+<!-- ===== 4 ===== -->
+<section id="s4">
+<h2><span class="no">4</span>第二章　縁起説</h2>
+<span class="q">問い：「縁起」は、過去から未来へ続く原因と結果の鎖なのか？</span>
+<p>縁起とは「縁（条件）によって起こる」という意味で、仏教の中心にある考えです。よく知られた形が十二支縁起（十二因縁）で、無明から老死まで十二の項目が並びます。</p>
+
+<h3>十二の項目</h3>
+<div class="tbl"><table>
+  <thead><tr><th>#</th><th>項目</th><th>読み</th><th>おおまかな意味</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>無明</td><td>むみょう</td><td>真実を知らないこと</td></tr>
+    <tr><td>2</td><td>行</td><td>ぎょう</td><td>形づくるはたらき</td></tr>
+    <tr><td>3</td><td>識</td><td>しき</td><td>見分けるはたらき</td></tr>
+    <tr><td>4</td><td>名色</td><td>みょうしき</td><td>名と形、心と身体の両面</td></tr>
+    <tr><td>5</td><td>六入</td><td>ろくにゅう</td><td>眼・耳・鼻・舌・身・意の六つの領域</td></tr>
+    <tr><td>6</td><td>触</td><td>そく</td><td>感官と対象と識が出会うこと</td></tr>
+    <tr><td>7</td><td>受</td><td>じゅ</td><td>感受</td></tr>
+    <tr><td>8</td><td>愛</td><td>あい</td><td>渇き求めること（渇愛）</td></tr>
+    <tr><td>9</td><td>取</td><td>しゅ</td><td>執着すること</td></tr>
+    <tr><td>10</td><td>有</td><td>う</td><td>生存のあり方</td></tr>
+    <tr><td>11</td><td>生</td><td>しょう</td><td>生まれること</td></tr>
+    <tr><td>12</td><td>老死</td><td>ろうし</td><td>老いと死（とそれに伴う苦しみ）</td></tr>
+  </tbody>
+</table></div>
+
+<h3>二つの読み方を切り替えてみる</h3>
+<p>同じ十二の項目でも、読み方によって意味がまったく変わります。下のボタンで切り替えてください。</p>
+<figure class="fig">
+  <div class="toggle" role="group" aria-label="読み方の切り替え">
+    <button type="button" id="mode-shu" class="t-shu" aria-pressed="true">伝統的な読み（三世両重の因果）</button>
+    <button type="button" id="mode-ai" class="t-ai" aria-pressed="false">和辻の読み（法と法の依存関係）</button>
+  </div>
+  <div class="svgwrap">
+  <svg class="chain" viewBox="0 0 760 270" role="img" aria-label="十二支縁起の二つの読み方の図">
+    <rect x="0" y="0" width="760" height="270" fill="var(--panel)"/>
+    <!-- limbs: x = 20 + k*61, width 54 -->
+    <g id="limbs" font-size="14" text-anchor="middle">
+      <g><rect x="20" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="47" y="135">無明</text></g>
+      <g><rect x="81" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="108" y="135">行</text></g>
+      <g><rect x="142" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="169" y="135">識</text></g>
+      <g><rect x="203" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="230" y="135">名色</text></g>
+      <g><rect x="264" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="291" y="135">六入</text></g>
+      <g><rect x="325" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="352" y="135">触</text></g>
+      <g><rect x="386" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="413" y="135">受</text></g>
+      <g><rect x="447" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="474" y="135">愛</text></g>
+      <g><rect x="508" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="535" y="135">取</text></g>
+      <g><rect x="569" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="596" y="135">有</text></g>
+      <g><rect x="630" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="657" y="135">生</text></g>
+      <g><rect x="691" y="110" width="54" height="40" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="718" y="135">老死</text></g>
+    </g>
+    <!-- traditional overlay -->
+    <g id="ov-shu">
+      <rect x="16" y="104" width="123" height="52" rx="6" fill="none" stroke="var(--shu)" stroke-width="2"/>
+      <rect x="138" y="104" width="306" height="52" rx="6" fill="none" stroke="var(--shu)" stroke-width="2" stroke-dasharray="5 3"/>
+      <rect x="443" y="104" width="184" height="52" rx="6" fill="none" stroke="var(--shu)" stroke-width="2"/>
+      <rect x="626" y="104" width="123" height="52" rx="6" fill="none" stroke="var(--shu)" stroke-width="2" stroke-dasharray="5 3"/>
+      <g font-size="13" text-anchor="middle">
+        <text x="77" y="88" font-weight="700" fill="var(--shu)">過去世の因</text>
+        <text x="291" y="88" font-weight="700" fill="var(--shu)">現在世の果</text>
+        <text x="535" y="88" font-weight="700" fill="var(--shu)">現在世の因</text>
+        <text x="687" y="88" font-weight="700" fill="var(--shu)">未来世の果</text>
+        <text x="77" y="182" fill="var(--mute)">前世の煩悩と業</text>
+        <text x="291" y="182" fill="var(--mute)">母胎に宿り、身心が育つ</text>
+        <text x="535" y="182" fill="var(--mute)">新たな業をつくる</text>
+        <text x="687" y="182" fill="var(--mute)">来世に生まれ老い死ぬ</text>
+      </g>
+      <line x1="30" y1="225" x2="730" y2="225" stroke="var(--shu)" stroke-width="2"/>
+      <polygon points="730,219 745,225 730,231" fill="var(--shu)"/>
+      <text x="380" y="252" font-size="13" text-anchor="middle" fill="var(--shu)">時間の流れ：過去 → 現在 → 未来（輪廻転生の説明）</text>
+    </g>
+    <!-- watsuji overlay -->
+    <g id="ov-ai" opacity="0">
+      <g stroke="var(--ai)" stroke-width="1.6" fill="none">
+        <path d="M718 158 Q688 188 657 158"/><path d="M657 158 Q627 188 596 158"/><path d="M596 158 Q566 188 535 158"/>
+        <path d="M535 158 Q505 188 474 158"/><path d="M474 158 Q444 188 413 158"/><path d="M413 158 Q383 188 352 158"/>
+        <path d="M352 158 Q322 188 291 158"/><path d="M291 158 Q261 188 230 158"/>
+        <path d="M230 102 Q200 60 169 102"/><path d="M169 158 Q200 200 230 158"/>
+        <path d="M169 158 Q139 188 108 158" stroke-dasharray="4 3"/><path d="M108 158 Q78 188 47 158" stroke-dasharray="4 3"/>
+      </g>
+      <g fill="var(--ai)">
+        <polygon points="652,162 657,155 660,164"/><polygon points="591,162 596,155 599,164"/><polygon points="530,162 535,155 538,164"/>
+        <polygon points="469,162 474,155 477,164"/><polygon points="408,162 413,155 416,164"/><polygon points="347,162 352,155 355,164"/>
+        <polygon points="286,162 291,155 294,164"/><polygon points="225,162 230,155 233,164"/>
+        <polygon points="164,99 169,106 172,97"/><polygon points="225,162 230,155 233,164"/>
+      </g>
+      <text x="200" y="52" font-size="13" text-anchor="middle" font-weight="700" fill="var(--ai)">識 ⇄ 名色（互いに依る）</text>
+      <text x="520" y="80" font-size="13" text-anchor="middle" fill="var(--ai)">「老死は何を条件として成り立つか」と右から左へたどる</text>
+      <text x="78" y="212" font-size="12" text-anchor="middle" fill="var(--mute)">行・無明は</text>
+      <text x="78" y="228" font-size="12" text-anchor="middle" fill="var(--mute)">後から加わった項</text>
+      <text x="420" y="240" font-size="13" text-anchor="middle" fill="var(--ai)">時間の前後ではなく、「AがなければBはない」という条件の関係</text>
+    </g>
+  </svg>
+  </div>
+  <p class="explain" id="explain-shu"><span class="tag shu">伝統的な読み</span>アビダルマ（論書）で完成した解釈。十二の項目を過去・現在・未来の三つの生にまたがる原因と結果の連鎖とみなし、輪廻転生を説明する理論として読む。和辻は、この解釈が「經藏の新しき層には既に存する」と見ている（376–377頁）。</p>
+  <p class="explain" id="explain-ai" hidden><span class="tag ai">和辻の読み</span>縁起は、ある法（あり方）が成り立つための欠かせない条件を順にたどるもので、時間の中の出来事の因果ではない。九支縁起は識と名色の相互依存で終わり、条件づけられないものを何も残さない（290–291頁）。</p>
+  <figcaption>点線の矢印は、和辻が九支・十支より後の段階で加わったと見る部分。</figcaption>
+</figure>
+
+<blockquote>緣起說は傳統的解釋に於ける如く存在せるものの時間的な因果關係を說くのではなくして、法と法との間の依存關係を辿るものである。
+  <span class="src">第二章 296–297頁</span>
+  <span class="mod">「縁起説は、伝統的な解釈のように、存在するもの同士の時間的な原因と結果の関係を説くのではない。法と法との間の依存関係をたどるものである」。この章の結論にあたる一文。</span>
+</blockquote>
+
+<h3>たとえで考える</h3>
+<div class="two">
+  <div><h4><span class="tag shu">時間の因果</span>ドミノ倒し</h4>一枚目が倒れ、その<b>あとで</b>二枚目が倒れる。原因が先、結果が後。前世の行いが今の生を生み、今の行いが来世を生む、という読み方はこちらに近い。</div>
+  <div><h4><span class="tag ai">条件の依存</span>「親」と「子」</h4>「子」がいなければ「親」と呼ばれる人もいない。どちらが先に起きたかではなく、<b>意味の上で</b>互いに支え合っている。和辻の言う識と名色の関係はこちらに近い。</div>
+</div>
+
+<h3>なぜ伝統的な解釈は誤ったのか</h3>
+<p>和辻は理由を二つ挙げています（272–273頁）。</p>
+<div class="tbl"><table>
+  <thead><tr><th>理由</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>1 根本的立場を見失った</td><td>縁起説は「主語を抜き去って法を考え、その法の条件を追究する」立場にある。「誰が受けるのか」と問うのは正しくなく、「何を条件として受があるのか」と問うべきだ、という経の一節がそれを示す。ところが人々は、法の条件を、時間の中の出来事の因果と混同した。</td></tr>
+    <tr><td>2 矛盾を無理に調和させた</td><td>経典には、条件の関係を純粋に追う経と、通俗的な霊魂の信仰と結びついた経が混在している。のちの学者はそれらをすべて一人の祖師の言葉として調和させようとした。原典批評（序論の方法）が欠けていたためである。</td></tr>
+  </tbody>
+</table></div>
+
+<h3>縁起の系列は少しずつ発展した</h3>
+<p>序論の方法を使うと、経典の中のさまざまな縁起の説き方を、単純なものから複雑なものへ並べ直すことができます。表の色つきのマスが、それぞれの段階に含まれる項目です。</p>
+<div class="tbl"><table class="mat">
+  <thead><tr><th>段階</th><th>無明</th><th>行</th><th>識</th><th>名色</th><th>六入</th><th>触</th><th>受</th><th>愛</th><th>取</th><th>有</th><th>生</th><th>老死</th><th class="pg">頁</th></tr></thead>
+  <tbody>
+    <tr><td>萌芽 無知→取著→苦</td><td class="sprout">無知</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="sprout">取著</td><td></td><td></td><td class="sprout">苦</td><td class="pg">276–277</td></tr>
+    <tr><td>六支縁起</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="pg">282–285</td></tr>
+    <tr><td>九支縁起</td><td></td><td></td><td class="on">●</td><td class="on">●</td><td></td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="pg">290–291</td></tr>
+    <tr><td>十支縁起</td><td></td><td></td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="pg">290–291</td></tr>
+    <tr><td>十二支縁起</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="on">●</td><td class="pg">—</td></tr>
+  </tbody>
+</table></div>
+<div class="point"><h4>表の読み方</h4>
+<ul>
+  <li><b>萌芽</b>：「無知だから執着し、執着するから苦しむ」。まだ縁起説とは呼べないが、その芽がある（276–277頁）。</li>
+  <li><b>六支</b>：愛・取・有・生・老死の系列がはっきりした形になる。ここで「生」が「老死」から切り離され、苦の条件として立てられる（282–283頁）。</li>
+  <li><b>九支</b>：老死から触までさかのぼり、触の条件に名色、名色の条件に識、そして識の条件にまた名色を置く。<b>識と名色が互いに依る</b>ところで終わる（290–291頁）。</li>
+  <li><b>十支</b>：九支に六入を加えたもの。</li>
+  <li><b>十二支</b>：さらに行と無明を加えたもの。のちに三世両重の因果として読まれるようになる。</li>
+</ul></div>
+<p class="note">六支縁起の欄は、和辻が引く経文「愛あるが故に取があり、取を條件として有、有を條件として生、生を條件として老病死憂悲苦惱がある」に出てくる項目を示した。系列の始まりには「煩悩に縛られた法に快楽を見ること」が置かれている。</p>
+
+<h3>先行研究との違い</h3>
+<div class="tbl"><table>
+  <thead><tr><th>研究者</th><th>主張</th><th>和辻の評価</th></tr></thead>
+  <tbody>
+    <tr><td>ワレザー（1904）</td><td>名色を「母胎の中の胎児」とする従来の解釈を攻撃し、縁起を論理的に解釈すべきだとした。識と名色に「観念論への転向」を見た</td><td>論理的解釈を主張した功績は大きい</td></tr>
+    <tr><td>松本文三郎（1911）</td><td>十二縁起は論理的関係で、時間的に説明すべきではない。識と名色の相依を認識論として読んだ</td><td>斬新な提案だったが、その後十数年、学界に受け継がれなかった</td></tr>
+    <tr><td>宇井伯壽（1925）</td><td>縁起の根本の意味は「此あれば彼あり」という相依相関性。人生がどう<b>発生</b>するかではなく、どう<b>なっているか</b>を説く</td><td>研究を一段深めた。ただし相依性だけでは足りない</td></tr>
+    <tr><td><b>和辻（1927）</b></td><td>系列ごとに<b>条件のたどり方</b>が違い、その違いが<b>思想的立場の違い</b>を示す。だから系列の発展を追うことが大事</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<p class="note">出典：第二章 266–273頁。和辻は宇井の「相依相関性」に賛成しつつ、「観念の順序」そのものに内的な必然性があると考えた点で一歩進めようとした。</p>
+
+<h3>逆観：縁起は「さとり」の道でもある</h3>
+<p>縁起は「Aがあるから Bがある」とたどる（順観）だけでなく、「Aがなくなれば Bもなくなる」と逆にたどる（逆観）こともできます。和辻はここに、知ることがそのまま実践の道になる仕組みを見ています。</p>
+<blockquote>無明が滅するとは明がひらけること、即ち自然的立場が滅せられて般若の立場が立てられることである。
+  <span class="src">第二章 376–377頁</span>
+  <span class="mod">「無明が消えるとは、明（智慧）がひらけることであり、ものをそのまま実在と思い込むふだんの立場（自然的立場）が退いて、智慧（般若）の立場に立つことである」。</span>
+</blockquote>
+</section>
+
+<!-- ===== 5 ===== -->
+<section id="s5">
+<h2><span class="no">5</span>第三章　道諦</h2>
+<span class="q">問い：この哲学は、どのような生き方の道になるのか？</span>
+<p>四諦（したい）は、苦しみについての四つの真理です。和辻は、第一章と第二章で見た「法の体系」が、四諦によって実践の哲学としてまとめられると考えました。</p>
+<div class="tbl"><table>
+  <thead><tr><th>四諦</th><th>内容</th><th>本書との対応</th></tr></thead>
+  <tbody>
+    <tr><td>苦諦</td><td>生きることは苦である</td><td>無常・苦・無我（第一章）</td></tr>
+    <tr><td>集諦</td><td>苦には条件（原因）がある</td><td>縁起の順観（第二章）</td></tr>
+    <tr><td>滅諦</td><td>条件がなくなれば苦もなくなる</td><td>縁起の逆観（第二章の終わり）</td></tr>
+    <tr><td>道諦</td><td>苦をなくすための道がある</td><td>八聖道（第三章）</td></tr>
+  </tbody>
+</table></div>
+
+<h3>八聖道</h3>
+<p>正見（正しい見方）から始まり、正思・正語・正業・正命・正精進・正念を経て、正定（正しい心の統一）で全体がまとまる、と和辻は説明しています。正見は「始めにして終わり」でもあるとされます（目次の第三章三による）。</p>
+
+<h3>輪廻は原始仏教に固有の思想ではない</h3>
+<p>第三章で特に議論を呼んだのが輪廻の扱いです。無我（固定した「私」はない）と輪廻（「私」が生まれ変わる）は、そのままでは両立しにくい組み合わせです。和辻は、輪廻思想は当時のインドに広くあった通俗的な信仰で、原始仏教はそれを取り入れはしたが、その実践哲学の中心には属さない、と結論しました。</p>
+<blockquote>我々の主張するのはこの思想が原始佛教に特有のものでないこと、及びそれが原始佛教特有の實踐哲學に屬せざることである。
+  <span class="src">第三章 460–461頁（本書の最後）</span>
+</blockquote>
+<p>その裏づけとして和辻はアショーカ王（阿育王）の碑文を読み、「彼岸」を死後の世界ではなく理想の世界と解しました（454–459頁）。王の努力は自分の来世のためではなく、すべての人を悪い行いから離れさせるためのものだ、という読みです。</p>
+
+<h3>この本のあとで</h3>
+<p>本書は、木村泰賢や赤沼智善のように縁起を生命の発生や輪廻と結びつけて読む立場と、真っ向からぶつかりました（和辻は注で両者の名を挙げて批判している。296–297頁など）。その後の論争は「第一次縁起論争」と呼ばれ、現在でも縁起の解釈を学ぶときの出発点になっています。</p>
+</section>
+
+<!-- ===== 6 ===== -->
+<section id="s6">
+<h2><span class="no">6</span>確認問題と用語集</h2>
+<p>答えを考えてから開いてください。</p>
+<details><summary>問1　和辻は、仏陀が形而上学的な問いに答えなかった理由をどう説明したか。</summary>
+<p>仏陀は哲学を拒んだのではない。対立する主張のどちらかを選ぶ土俵に降りることをしなかった。「ものが有るか無いか」ではなく「ものがどうあるか（法）」を問う立場に立っていたから（142–143頁）。</p></details>
+<details><summary>問2　伝統的な十二支縁起の読み方と、和辻の読み方の違いを一文で。</summary>
+<p>伝統的な読みは、過去・現在・未来にまたがる時間的な原因と結果の連鎖として読む。和辻は、法と法との間の依存（条件づけ）の関係として読む（296–297頁）。</p></details>
+<details><summary>問3　九支縁起はどこで終わるか。それはなぜ重要か。</summary>
+<p>識と名色が互いに依るところで終わる。条件づけられないもの（究極の原因や実体）を何も残さないので、縁起説が独自の立場を確立したことを示すから（290–291頁）。</p></details>
+<details><summary>問4　和辻が、経典の縁起説にいろいろな形があることを重視したのはなぜか。</summary>
+<p>系列が違うことは、条件のたどり方が違うことであり、その違いは思想的立場の違いを示す。宇井の言う「相依性」だけでは、この発展が見えなくなるから（270–273頁）。</p></details>
+<details><summary>問5（発展）　あなたの身近な例で、「時間の因果」と「条件の依存」を一つずつ挙げてみよう。</summary>
+<p>例：「雨が降ったから地面がぬれた」は時間の因果。「『右』という言葉は『左』がなければ意味をもたない」は条件の依存。どちらにも当てはまりそうな例を見つけたら、どこが違うかを考えてみよう。</p></details>
+
+<div class="tbl"><table>
+  <thead><tr><th>用語</th><th>読み</th><th>この本での意味</th></tr></thead>
+  <tbody>
+    <tr><td>原始仏教</td><td>げんしぶっきょう</td><td>仏陀とその直後の時代の仏教。主にパーリ語の経律と漢訳の阿含から知られる</td></tr>
+    <tr><td>阿含／ニカーヤ</td><td>あごん</td><td>初期の経典集。漢訳が阿含、パーリ語版がニカーヤ</td></tr>
+    <tr><td>法（ダルマ）</td><td>ほう</td><td>存在するものそのものではなく、それが存在するときのあり方・条件</td></tr>
+    <tr><td>五蘊</td><td>ごうん</td><td>色・受・想・行・識。何かが「ある」ことの五つのあり方</td></tr>
+    <tr><td>六入（六入処）</td><td>ろくにゅう</td><td>眼耳鼻舌身意の六つの領域</td></tr>
+    <tr><td>縁起</td><td>えんぎ</td><td>法が成り立つための条件の関係</td></tr>
+    <tr><td>三世両重の因果</td><td>さんぜりょうじゅう</td><td>十二支を過去・現在・未来の二重の因果とみる伝統的解釈（和辻自身はこの語を使わず「阿毘達磨的解釈」と呼ぶ）</td></tr>
+    <tr><td>順観／逆観</td><td>じゅんかん／ぎゃくかん</td><td>条件を「あるからある」とたどるのが順観、「なくなればなくなる」とたどるのが逆観</td></tr>
+    <tr><td>自然的立場</td><td>しぜんてきたちば</td><td>ものをそのまま実在と思い込む日常の見方。無明とほぼ重なる</td></tr>
+    <tr><td>般若</td><td>はんにゃ</td><td>法をありのままに見る智慧</td></tr>
+  </tbody>
+</table></div>
+
+<p class="note">この解説の引用は、国立国会図書館デジタルコレクション（info:ndljp/pid/1188217）の画像をOCRしたテキストに基づき、旧字・旧仮名は原文のまま示した。レポートで引用するときは、原本の画像で文字と頁を確かめること。現代語訳はこの解説で付けたもの。</p>
+</section>
+</div>
+
+<script>
+(function(){
+  const bs=document.getElementById("mode-shu"), ba=document.getElementById("mode-ai");
+  const os=document.getElementById("ov-shu"), oa=document.getElementById("ov-ai");
+  const es=document.getElementById("explain-shu"), ea=document.getElementById("explain-ai");
+  function set(m){
+    const ai=m==="ai";
+    bs.setAttribute("aria-pressed",String(!ai)); ba.setAttribute("aria-pressed",String(ai));
+    os.setAttribute("opacity",ai?"0":"1"); oa.setAttribute("opacity",ai?"1":"0");
+    es.hidden=ai; ea.hidden=!ai;
+  }
+  bs.addEventListener("click",()=>set("shu")); ba.addEventListener("click",()=>set("ai"));
+})();
+</script>
+
+</html>
